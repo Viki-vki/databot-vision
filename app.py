@@ -284,7 +284,7 @@ with tab1:
         output_file = 'database_schema.html'
         net.write_html(output_file)
         # st.image(image, caption='Image Caption', use_column_width=True)
-        st.components.v1.html(open(output_file, 'r').read(), width=1000, height=700, scrolling=False)
+        #st.components.v1.html(open(output_file, 'r').read(), width=1000, height=700, scrolling=False)
 
 
     thinking_face_emoji = "\U0001F914"

@@ -12,3 +12,4 @@ pandasai
 python-dotenv
 azure-cognitiveservices-speech
 pyvis
+langchain_openai

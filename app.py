@@ -140,12 +140,12 @@ st.set_page_config(
     layout="wide")
 
 tab1, tab2 = st.tabs(["Data Bot", "Vision Bot"])
-
-# Content for Tab 1
+gpt4 = st.toggle('GPT 4')
+# Content for Tab 11
 with tab1:
     colh1, colh2, colh3 = st.columns((7, 1.5, 1.5))
     with colh1:
-        gpt4 = st.toggle('GPT 4')
+        
         if gpt4:
             llm = AzureChatOpenAI(
                     openai_api_version="2024-02-15-preview",

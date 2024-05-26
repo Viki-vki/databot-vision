@@ -140,6 +140,7 @@ st.set_page_config(
     layout="wide")
 
 tab1, tab2 = st.tabs(["Data Bot", "Vision Bot"])
+
 gpt4 = st.toggle('GPT 4')
 # Content for Tab 11
 with tab1:

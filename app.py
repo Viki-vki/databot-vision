@@ -446,7 +446,7 @@ with tab1:
 with tab2:
 
     # Textbox for updating OpenAI API key
-    api_key = st.text_input("Enter your OpenAI API key", type="password")
+    api_key = "sk-proj-WWg7S2Zmsl9fFRcxRxOfT3BlbkFJLwicDAKfRcixnNyhPLDf"
     if not api_key:
         api_key = os.environ.get("OPENAI_API_KEY", "")
 

@@ -140,10 +140,11 @@ st.set_page_config(
     layout="wide")
 
 tab1, tab2 = st.tabs(["Data Bot", "Vision Bot"])
-gpt4 = st.toggle('GPT 4')
+
 
 # Content for Tab 11
 with tab1:
+    gpt4 = st.toggle('GPT 4')
     colh1, colh2, colh3 = st.columns((7, 1.5, 1.5))
     with colh1:        
         if gpt4:

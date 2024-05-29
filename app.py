@@ -54,6 +54,10 @@ import streamlit as st
 import azure.cognitiveservices.speech as speechsdk
 import speech_recognition as sr
 
+import sounddevice as sd
+import wave
+import numpy as np
+
 # Azure Speech Service configuration
 speech_key = "6555eeb2e3a34f8e9fec52bef46c819d"
 service_region = "eastus"

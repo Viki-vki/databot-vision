@@ -14,4 +14,4 @@ azure-cognitiveservices-speech
 pyvis
 langchain_openai
 SpeechRecognition
-pyaudio
+#pyaudio

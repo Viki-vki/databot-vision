@@ -50,6 +50,9 @@ from utils import get_image_description
 
 
 
+import streamlit as st
+import azure.cognitiveservices.speech as speechsdk
+
 
 # Azure Speech Service configuration
 speech_key = "6555eeb2e3a34f8e9fec52bef46c819d"
@@ -478,3 +481,51 @@ with tab2:
 with tab3:
     
     st.write("Classifying...")
+    # Azure Speech Service configuration
+    speech_key = "6555eeb2e3a34f8e9fec52bef46c819d"
+    service_region = "eastus"
+
+    st.title("Speech to Text using Azure Speech Service")
+
+    # Initialize user_question in session state
+    if 'user_question' not in st.session_state:
+        st.session_state.user_question = ""
+
+    # Store the text input field state
+    user_question_input = st.empty()
+
+    col1, col2 = st.columns([3, 1])
+
+    with col1:
+        # Use st.session_state to access and update user_question
+        st.session_state.user_question = user_question_input.text_input("Your question here:", st.session_state.user_question)
+
+    with col2:
+        record_button = st.button("🎙️")
+
+    submit_button = st.button("Submit")
+
+    st.write("*Add - at the end of your prompt and mention your specify the type of chart you like present.")
+
+    def speech_to_text_from_microphone():
+        speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
+        audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
+        speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
+        try:
+            st.info("Recording audio using microphone. Please speak clearly.")
+            result = speech_recognizer.recognize_once_async().get()
+            return result.text
+        except Exception as e:
+            return f"Error: {str(e)}"
+
+    if record_button:
+        transcription = speech_to_text_from_microphone()
+        if transcription:
+            # Update user_question with transcribed text
+            st.session_state.user_question = transcription
+            # Update the text input field with the transcribed text
+            user_question_input.text_input("Your question here:", st.session_state.user_question)
+
+    if submit_button:
+        # Process user_question, e.g., send it to a backend for further processing
+        st.write("User's question submitted:", st.session_state.user_question)

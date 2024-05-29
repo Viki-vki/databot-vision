@@ -448,55 +448,69 @@ with tab1:
 
 with tab2:
 
-    # Textbox for updating OpenAI API key
-    api_key = "sk-proj-WWg7S2Zmsl9fFRcxRxOfT3BlbkFJLwicDAKfRcixnNyhPLDf"
-    if not api_key:
-        api_key = os.environ.get("OPENAI_API_KEY", "")
+#     # Textbox for updating OpenAI API key
+#     api_key = "sk-proj-WWg7S2Zmsl9fFRcxRxOfT3BlbkFJLwicDAKfRcixnNyhPLDf"
+#     if not api_key:
+#         api_key = os.environ.get("OPENAI_API_KEY", "")
 
-    if api_key:
-        # Initialize the OpenAI client
-        client = OpenAI(api_key=api_key)
+#     if api_key:
+#         # Initialize the OpenAI client
+#         client = OpenAI(api_key=api_key)
 
-        # Textbox for updating the prompt
-        prompt = st.text_input("Enter the prompt for image description", "What’s in this image?")
+#         # Textbox for updating the prompt
+#         prompt = st.text_input("Enter the prompt for image description", "What’s in this image?")
 
-        # Upload image button
-        uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+#         # Upload image button
+#         uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
-        if uploaded_file is not None:
-            try:
-                # Display the uploaded image
-                st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
-                st.write("")
-                st.write("Classifying...")
+#         if uploaded_file is not None:
+#             try:
+#                 # Display the uploaded image
+#                 st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
+#                 st.write("")
+#                 st.write("Classifying...")
 
-                # Get the image description
-                description = get_image_description(client, uploaded_file, prompt)
-                st.write(description)
-            except Exception as e:
-                st.error(f"Error: {e}")
-    else:
-        st.error("Please provide a valid OpenAI API key.")
+#                 # Get the image description
+#                 description = get_image_description(client, uploaded_file, prompt)
+#                 st.write(description)
+#             except Exception as e:
+#                 st.error(f"Error: {e}")
+#     else:
+#         st.error("Please provide a valid OpenAI API key.")
 
-with tab3:
+# with tab3:
     
-    def main():
-        st.title("Speech-to-Text App")
-        recognizer = sr.Recognizer()
+#     def main():
+#         st.title("Speech-to-Text App")
+#         recognizer = sr.Recognizer()
 
-        # Create a button to start recording
-        if st.button("Start Recording"):
-            st.info("Listening... Speak now!")
-            with sr.Microphone() as source:
-                audio_data = recognizer.record(source, duration=5)  # Record for 5 seconds
+#         # Create a button to start recording
+#         if st.button("Start Recording"):
+#             st.info("Listening... Speak now!")
+#             with sr.Microphone() as source:
+#                 audio_data = recognizer.record(source, duration=5)  # Record for 5 seconds
 
-            try:
-                text = recognizer.recognize_google(audio_data)
-                st.success(f"Transcribed Text: {text}")
-            except sr.UnknownValueError:
-                st.warning("Could not understand audio. Please try again.")
-            except sr.RequestError as e:
-                st.error(f"Error connecting to Google Speech Recognition service: {e}")
+#             try:
+#                 text = recognizer.recognize_google(audio_data)
+#                 st.success(f"Transcribed Text: {text}")
+#             except sr.UnknownValueError:
+#                 st.warning("Could not understand audio. Please try again.")
+#             except sr.RequestError as e:
+#                 st.error(f"Error connecting to Google Speech Recognition service: {e}")
 
-    if __name__ == "__main__":
-        main()
+#     if __name__ == "__main__":
+#         main()
+    def record_audio(filename, duration, samplerate=44100):
+        print("Recording...")
+        recording = sd.rec(int(duration * samplerate), samplerate=samplerate, channels=2, dtype='int16')
+        sd.wait()
+        print("Recording complete")
+
+        # Save as WAV file
+        with wave.open(filename, 'wb') as wf:
+            wf.setnchannels(2)
+            wf.setsampwidth(2)  # 2 bytes per sample
+            wf.setframerate(samplerate)
+            wf.writeframes(recording.tobytes())
+
+    record_audio('output.wav', 5)  # Record for 5 seconds

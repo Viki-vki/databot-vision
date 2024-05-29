@@ -15,3 +15,6 @@ pyvis
 langchain_openai
 SpeechRecognition
 #pyaudio
+sounddevice
+Wave
+numpy

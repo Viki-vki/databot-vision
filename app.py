@@ -139,7 +139,7 @@ st.set_page_config(
     page_icon=sql_icon,
     layout="wide")
 
-tab1, tab2 = st.tabs(["Data Bot", "Vision Bot"])
+tab1, tab2, tab3 = st.tabs(["Data Bot", "Vision Bot", "Voice Bot"])
 
 
 # Content for Tab 11
@@ -474,3 +474,7 @@ with tab2:
                 st.error(f"Error: {e}")
     else:
         st.error("Please provide a valid OpenAI API key.")
+
+with tab3:
+    
+    st.write("Classifying...")

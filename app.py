@@ -58,7 +58,7 @@ import speech_recognition as sr
 import streamlit.components.v1 as components
 
 from datetime import datetime
-import autogen
+# import autogen
 
 # import sounddevice as sd
 # import wave

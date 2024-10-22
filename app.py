@@ -25,9 +25,16 @@ st.set_page_config(
 )
 
 # Set the LLM (Language Model)
-openai_4_key = os.getenv("openai_4_key")
+openai_4_version = os.getenv("openai_4_version"),
+openai_4_key = os.getenv("openai_4_key"),
+openai_4_deployment = os.getenv("openai_4_deployment"),
+openai_4_endpoint = os.getenv("openai_4_endpoint"),
 openai_4_model = os.getenv("openai_4_model")
-llm = AzureChatOpenAI(api_key=openai_4_key, model_name=openai_4_model)
+temperature_op = 0.1
+# llm = AzureChatOpenAI(api_key=openai_4_key, model_name=openai_4_model)
+llm = AzureChatOpenAI(openai_api_version=os.getenv("openai_4_version"),azure_deployment=os.getenv("openai_4_deployment"),openai_api_key=os.getenv("openai_4_key"),azure_endpoint=os.getenv("openai_4_endpoint"),model=os.getenv("openai_4_model"),temperature=temperature_op)
+
+
 
 # Database connection
 engine = create_engine('sqlite:///sakila_master.db')

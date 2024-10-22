@@ -553,22 +553,22 @@ with tab1:
         else:
             using_mod="gpt-4o-2024-05-13"
 
-        new_project_metadata = ProjectMetadata(
-            Timestamp=str(datetime.now()),  # Assuming you have a timestamp string
-            Prompt_Tokens=str(prompt_tokens),
-            Completion_Tokens=str(completion_tokens),
-            Total_Cost=str(total_cost),
-            Processing_Time=str(st.session_state.processing_time),
-            uniquid=str(unique_id),
-            Model=str(using_mod)
-        )
-        session.add(new_project_metadata)
+        # new_project_metadata = ProjectMetadata(
+        #     Timestamp=str(datetime.now()),  # Assuming you have a timestamp string
+        #     Prompt_Tokens=str(prompt_tokens),
+        #     Completion_Tokens=str(completion_tokens),
+        #     Total_Cost=str(total_cost),
+        #     Processing_Time=str(st.session_state.processing_time),
+        #     uniquid=str(unique_id),
+        #     Model=str(using_mod)
+        # )
+        # session.add(new_project_metadata)
 
-        # Commit the changes to the database
-        session.commit()
+        # # Commit the changes to the database
+        # session.commit()
 
-        # Close the session
-        session.close()
+        # # Close the session
+        # session.close()
 
 
     hide_st_style = """
@@ -646,27 +646,27 @@ with tab2:
 
     # DB Update
     # Create a session
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    # Insert data (replace with your actual values)
-    using_mod="gpt-4o-2024-05-13"
+    # Session = sessionmaker(bind=engine)
+    # session = Session()
+    # # Insert data (replace with your actual values)
+    # using_mod="gpt-4o-2024-05-13"
 
-    new_project_metadata = ProjectMetadata(
-        Timestamp=str(datetime.now()),  # Assuming you have a timestamp string
-        Prompt_Tokens=str(prompt_tokens),
-        Completion_Tokens=str(completion_tokens),
-        Total_Cost=str(total_cost),
-        Processing_Time=str(st.session_state.processing_time),
-        uniquid=str(unique_id),
-        Model=str(using_mod)
-    )
-    session.add(new_project_metadata)
+    # new_project_metadata = ProjectMetadata(
+    #     Timestamp=str(datetime.now()),  # Assuming you have a timestamp string
+    #     Prompt_Tokens=str(prompt_tokens),
+    #     Completion_Tokens=str(completion_tokens),
+    #     Total_Cost=str(total_cost),
+    #     Processing_Time=str(st.session_state.processing_time),
+    #     uniquid=str(unique_id),
+    #     Model=str(using_mod)
+    # )
+    # session.add(new_project_metadata)
 
-    # Commit the changes to the database
-    session.commit()
+    # # Commit the changes to the database
+    # session.commit()
 
-    # Close the session
-    session.close()
+    # # Close the session
+    # session.close()
 
 
 
